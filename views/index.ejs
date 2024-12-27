@@ -1,0 +1,95 @@
+<%- include("./partials/header.ejs") %>
+<main>
+  <section role="article" class="text-center container my-5">
+    <h1>Collection Of Your <span class="primary-text">GoodReads</span></h1>
+    <div class="position-relative mb-2">
+      <input
+        type="search"
+        name="book-search"
+        id="book-search"
+        class="mt-3 w-75 rounded-2 p-2"
+        autofocus
+      />
+      <div
+        id="search-suggestion"
+        class="position-absolute top-100 start-50 translate-middle-x bg-white z-1 text-center w-75 rounded py-2 mt-1"
+      >
+        <div class="h-100 d-flex justify-content-center align-items-center">
+          <div class="spinner-grow text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mx-lg-5 px-lg-5">
+      Track, Review, Rate your faviorate books. Just enter the
+      <span class="text-nowrap"
+        >book name or
+        <div class="position-relative d-inline-block isbn-details">
+          <button class="info-text p-0 border-0 bg-color">ISBN</button>
+          <p
+            class="info-bg text-white p-2 rounded position-absolute start-50 top-100 translate-middle-x text-wrap"
+          >
+            International Standard Book Number is a unique number that
+            identifies a book. You can find the ISBN number on the copyright
+            page and in the bar code of the book.
+          </p>
+        </div>
+        number on</span
+      >
+      the above search box and select your book, review and rate it and add it
+      to your collection.
+    </div>
+  </section>
+  <section class="container books-container mb-3">
+    <div class="d-flex justify-content-between">
+      <h2 class="m-0">Books</h2>
+      <div class="align-content-center">
+        <label for="sort-books">Sort By: </label>
+        <select name="sort" id="sort-books" class="form-control d-inline w-auto">
+          <option value="created_at" <%= sort==="created_at"&&"selected" %>>Recency</option>
+          <option value="rating" <%= sort==="rating"&&"selected" %>>Rating</option>
+          <option value="pages" <%= sort==="pages"&&"selected" %>>Pages</option>
+          <option value="publish_year" <%= sort==="publish_year"&&"selected" %>>Publish Year</option>
+        </select>
+      </div>
+    </div>
+    <hr class="mt-1 rounded-2" />
+    <div class="row row-cols-1 row-cols-md-2 m-0 justify-content-between">
+      <% books.forEach((book)=>{ %>
+      <a
+        href="/book/<%= book.id %>"
+        class="col p-0 mb-3 rounded overflow-hidden text-reset text-decoration-none"
+      >
+        <div class="h-100 overflow-hidden">
+          <img
+            src="<%= API_IMAGE_URL + book.isbn %>-L.jpg"
+            alt="<%= book.book_title %>'s Image"
+            class="w-100 h-100"
+          />
+        </div>
+        <div class="ps-3 mt-2">
+          <h3><%= book.book_title %></h3>
+          <h5 class="text-muted">By <%= book.book_author %></h5>
+          <p class="fw-bold">🌟<%= book.rating %></p>
+          <p class="m-0">
+            <span class="fw-bold">Pages: </span><%=
+            book.pages===0?"Unkown":book.pages %>
+          </p>
+          <p class="m-0">
+            <span class="fw-bold">Published On: </span><%= book.publish_year %>
+          </p>
+          <p class="m-0 fw-bold">Subjects:</p>
+          <ul>
+            <% JSON.parse(book.subject).slice(0,3).forEach((subject)=>{ %>
+            <li><%= subject %></li>
+            <% }) %>
+          </ul>
+        </div>
+      </a>
+      <% }) %>
+    </div>
+  </section>
+</main>
+
+<%- include("./partials/footer.ejs") %>

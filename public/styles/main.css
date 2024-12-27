@@ -1,0 +1,210 @@
+:root {
+  --primary-color: hsl(145, 71%, 47%);
+  --bg-color: hsl(240, 100%, 98%);
+  --text-color: hsl(120, 1%, 17%);
+  --error: hsl(6, 71%, 50%);
+  --info: hsl(193, 99%, 47%);
+}
+
+:root {
+  --font-primary: "Roboto Slab", serif;
+  --font-1: "Poppins", serif;
+  --font-2: "Oswald", serif;
+}
+
+* {
+  box-sizing: border-box !important;
+}
+
+body {
+  font-family: var(--font-1);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.primary-text {
+  color: var(--primary-color);
+}
+.primary-bg {
+  background-color: var(--primary-color);
+}
+.error-text {
+  color: var(--error);
+}
+.error-bg {
+  background-color: var(--error);
+}
+.info-text {
+  color: var(--info);
+}
+.info-bg {
+  background-color: var(--info);
+}
+.bg-color {
+  background-color: var(--bg-color);
+}
+
+.font-primary {
+  font-family: var(--font-primary);
+}
+.font-1 {
+  font-family: var(--font-1);
+}
+.font-2 {
+  font-family: var(--font-2);
+}
+
+button.primary-bg,
+[role="button"].primary-bg {
+  transition: all 0.15s ease;
+  font-weight: bold;
+  color: white;
+
+  &:hover {
+    background-color: var(--bg-color);
+    color: var(--primary-color) !important;
+    box-shadow: 0px 0px 0.5rem var(--primary-color);
+  }
+}
+button.error-bg,
+[role="button"].error-bg {
+  transition: all 0.15s ease;
+  font-weight: bold;
+  color: white;
+
+  &:hover {
+    background-color: var(--bg-color);
+    color: var(--error) !important;
+    box-shadow: 0px 0px 0.5rem var(--error);
+  }
+}
+button.info-bg,
+[role="button"].info-bg {
+  transition: all 0.15s ease;
+  font-weight: bold;
+  color: white;
+
+  &:hover {
+    background-color: var(--bg-color);
+    color: var(--info) !important;
+    box-shadow: 0px 0px 0.5rem var(--info);
+  }
+}
+
+nav {
+  border-bottom: 2px solid var(--primary-color);
+}
+#back-to-home{
+  cursor: pointer;
+}
+
+main {
+  min-height: 75vh;
+}
+
+/* Article */
+#book-search {
+  outline: none;
+  border: 1px solid var(--primary-color) !important;
+  transition: all 0.15s ease;
+}
+
+#search-suggestion {
+  display: none;
+  box-shadow: 0px 0px 0.5rem var(--primary-color);
+  height: 300px;
+  overflow-y: scroll;
+
+  & .book-details {
+    border-bottom: 1px solid var(--primary-color);
+  }
+  & .book-details:last-child {
+    border: none;
+  }
+
+  & .book-img {
+    width: 30%;
+    height: 150px;
+  }
+}
+
+.isbn-details {
+  & > p {
+    font-size: 0.9rem;
+    width: 15rem;
+    display: none;
+  }
+
+  &:hover > p {
+    display: block;
+  }
+}
+
+/* Books Container */
+.books-container {
+  --col-height: 20rem;
+
+  & > hr {
+    border: 1px solid var(--primary-color);
+    opacity: 1;
+  }
+
+  & .col {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    outline: 1px solid var(--primary-color);
+  }
+  & .col:hover {
+    box-shadow: 0px 0px 0.5rem var(--primary-color);
+  }
+}
+
+/* Add Book */
+.add-book {
+  & img {
+    height: 400px;
+  }
+
+  & textarea {
+    height: 100px;
+    resize: none;
+  }
+
+  & #rating {
+    height: 0;
+    width: 0;
+  }
+}
+.form-container {
+  min-height: 100vh;
+}
+.checked {
+  color: gold;
+}
+
+
+/* Book */
+.book{
+  min-height: 80vh;
+
+  & img{
+    height: 400px;
+  }
+
+  & .subject-details{
+    cursor: pointer;
+  }
+  & .subjects{
+    display: none;
+    min-width: 200px;
+    min-height: 100px;
+  }
+  & .subject-details:hover  .subjects{
+    display: block;
+  }
+}
+
+/* ERROR */
+.error{
+  height: 80vh;
+}

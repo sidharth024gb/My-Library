@@ -1,0 +1,51 @@
+<%- include("./partials/header.ejs") %>
+<div class="form-container container py-5">
+  <h1 class="text-center primary-text">Add Book</h1>
+  <div
+    class="add-book d-flex flex-column flex-md-row gap-2 rounded-2 overflow-hidden"
+  >
+    <img src="<%= API_IMAGE_URL+isbn %>-L.jpg" alt="<%= bookName %>'s Image" />
+    <form action="/add-book" method="post" class="flex-grow-1 pe-1">
+      <h2><%= bookName %></h2>
+      <h5 class="mb-3 text-muted">By <%= author %></h5>
+      <input type="hidden" name="isbn" id="isbn" value="<%= isbn %>" />
+      <label for="review" class="form-label">Review:</label>
+      <textarea
+        name="review"
+        id="review"
+        class="form-control"
+        autofocus
+        required
+      ></textarea>
+      <div id="rating-block" class="mt-3">
+        <label for="rating">Rating: </label>
+        <span id="rating-star" title="1" class="fa-solid fa-star"></span>
+        <span id="rating-star" title="2" class="fa-solid fa-star"></span>
+        <span id="rating-star" title="3" class="fa-solid fa-star"></span>
+        <span id="rating-star" title="4" class="fa-solid fa-star"></span>
+        <span id="rating-star" title="5" class="fa-solid fa-star"></span>
+        <input
+          type="number"
+          name="rating"
+          id="rating"
+          class="opacity-0"
+          required
+        />
+      </div>
+      <div class="form-btn d-flex justify-content-end gap-2 mt-3">
+        <button type="submit" class="btn text-white fw-bold primary-bg">
+          Add
+        </button>
+        <button
+          type="reset"
+          id="back-to-home"
+          class="btn text-white fw-bold error-bg"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="/scripts/rating.js"></script>
+<%- include("./partials/footer.ejs") %>

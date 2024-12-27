@@ -1,0 +1,58 @@
+<%- include("./partials/header.ejs") %>
+<div class="book container my-5">
+  <div class="row rounded-2 shadow overflow-hidden m-0">
+    <div class="col-12 col-md-4 p-0">
+      <img
+        src="<%= API_IMAGE_URL + book.isbn %>-L.jpg"
+        alt="<%= book.title %>'s Image"
+        class="w-100"
+      />
+    </div>
+    <div class="col-12 col-md-8 py-2">
+      <h3><%= book.book_title %></h3>
+      <h4 class="text-muted">By <%= book.book_author %></h4>
+      <h5 class="fw-bold">🌟<%= book.rating %></h5>
+      <p>
+        <span class="fw-bold">Pages: </span><%=
+        book.pages===0?"Unkown":book.pages %>
+      </p>
+      <p><span class="fw-bold">Published On: </span><%= book.publish_year %></p>
+      <p>
+        <span class="fw-bold">Add On: </span><%= new
+        Date(book.created_at).toLocaleString("en-GB",{ year:'numeric', month:
+        'long', day: 'numeric'}) %>
+      </p>
+      <div class="subject-container position-relative d-inline">
+        <span class="fw-bold">Subjects: </span>
+        <span>
+          <% JSON.parse(book.subject).slice(0,3).forEach((subject,index,subjects)=>{%>
+          <!--  -->
+          <%= subject + (index === subjects.length-1? "" : ",") %> <% }); %>
+        </span>
+        <div class="info-text subject-details d-inline">
+          <span>...</span>
+          <div
+            class="subjects position-absolute end-0 bottom-100 info-bg rounded-2 text-white px-1 py-2"
+          >
+            <% JSON.parse(book.subject).slice(0,20).forEach((subject,index,subjects)=>{ %>
+            <%= subject + (index === subjects.length-1? "." : ",") %> <% }); %>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end gap-2">
+        <a href="/edit/<%= book.id %>" role="button" class="btn info-bg">
+          Edit
+        </a>
+        <a href="/delete/<%= book.id %>" role="button" class="btn error-bg">
+          Delete
+        </a>
+      </div>
+    </div>
+  </div>
+  <hr class="primary-text" />
+  <div class="row">
+    <h5>Review:</h5>
+    <p><%= book.review %></p>
+  </div>
+</div>
+<%- include("./partials/footer.ejs") %>

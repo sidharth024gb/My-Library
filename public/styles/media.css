@@ -1,0 +1,15 @@
+@media (width>768px) {
+  .books-container {
+    & .col {
+      width: 49%;
+      height: var(--col-height);
+    }
+  }
+  .add-book {
+    min-height: 400px;
+
+    & img {
+      width: 30%;
+    }
+  }
+}
